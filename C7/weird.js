@@ -1,6 +1,6 @@
 function weirdMultiply(sentence) {
-    let value = sentence.toString();
-    let arr = value.split('');
+    const value = sentence.toString();
+    const arr = value.split('');
     let multiple = 1;
     if (value.length == 1) {
         return value;
@@ -12,5 +12,9 @@ function weirdMultiply(sentence) {
     }
 }
 console.log(weirdMultiply(39));
-console.log(weirdMultiply(999));
-// console.log(weirdMultiply(3));
+// console.log(weirdMultiply(999));
+console.log(weirdMultiply(3));
+// let sentence = '39';
+// let arr = Array.from(sentence)
+// console.log(arr)
+
