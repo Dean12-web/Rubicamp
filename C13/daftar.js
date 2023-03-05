@@ -31,13 +31,18 @@ if(args1 === undefined){
     }else if(args1 === "list"){
         console.log("Daftar pekerjaan");
         for (let i = 0; i < data.length; i++) {
-            console.log(`${i + 1}. [ ] ${data[i].task}`)    
+            console.log(`${i + 1}. [${data[i].complete ? 'X' : ' '}] ${data[i].task_content}`)    
         }
     }else if(args1 === 'task'){
         console.log("data ke i telah di tugaskan")
     }else if(args1 === 'add'){
+        data.push({"task_id" : "5","task_content" : "Saya pergi kepasar hari ini","status" : false, })
+        fs.writeFileSync('data.json', JSON.stringify(data));
         console.log("data ke i telah di add dari daftar")
     }else if(args1 === 'delete'){
+        let deleteData = parseInt(data[3] - 1 );
+        data.splice(deleteData,1);
+        fs.writeFileSync('data.json', JSON.stringify(data))
         console.log("data ke i telah di hapus dari daftar")
     }else if(args1 === 'complete'){
         console.log("data ke i telah selesai")
@@ -46,21 +51,29 @@ if(args1 === undefined){
     }else if(args1 === 'list:outstanding'){
         if(args2 == 'asc'){
             for (let i = 0; i < data.length; i++) {
-                console.log(`${i+1}.[ ] ${data[i].task}`)    
+                if(data[i].complete === false){
+                    console.log(`${i+1}.[ ] ${data[i].task_content}`)    
+                }   
             }
         }else{
             for (let j = data.length -1 ; j >= 0; j--) {
-                console.log(`${j+1}.[ ] ${data[j].task}`)
+                if(data[i].complete === false){
+                    console.log(`${i+1}.[ ] ${data[i].task_content}`)    
+                }
             }
         }
     }else if(args1 === 'list:completed'){
         if(args2 == 'asc'){
             for (let i = 0; i < data.length; i++) {
-                console.log(`${i+1}.[x] ${data[i].task}`)    
+                if(data[i].complete === true){
+                    console.log(`${i+0}.[X] ${data[i].task_content}`)    
+                }
             }
         }else{
             for (let j = data.length -1 ; j >= 0; j--) {
-                console.log(`${j+1}.[x] ${data[j].task}`)
+                if(data[j].complete === true){
+                    console.log(`${j+0}.[X] ${data[j].task_content}`)    
+                }
             }
         }
     }else if(args1 === 'filter'){
