@@ -1,7 +1,8 @@
 const fs = require('node:fs');
 const process = require('node:process');
 
-const args = process.argv[2];
+const args2 = process.argv[3];
+const args1 = process.argv[2];
 // console.log(args);
 const daftarList = `>>>> JS TODO <<<<
 $ node daftar.js <command>
@@ -10,31 +11,61 @@ $ node daftar.js task <task_id>
 $ node daftar.js add <task_content
 $ node daftar.js delete <task_id>
 $ node daftar.js complete <task_id>
-$ node daftar.js uncomplet (ctask_id)
-$ node daftar.js list:otstanding asc|desc
+$ node daftar.js uncompleted (ctask_id)
+$ node daftar.js list:outstanding asc|desc
 $ node daftar.js list:completed asc|desc
 $ node daftar.js tag <task_id> <tag_name_1> <tag_name_2> ... <tag_name_N>
 $ node daftar.js filter:<tag_name>`
 
 
-const inputNew = [{
-    number : 1,
-    task : "Saya mau pergi lagi"
-},{
-    number : 2,
-    task : "Saya mau pergi"
-}]
-const input = {
-    number : 2,
-    task : "Saya mau pergi"
-}
 let rawdata = fs.readFileSync('data.json');
 let data = JSON.parse(rawdata)
 
-const jsonString = JSON.stringify(inputNew);
-fs.writeFileSync('data.json', jsonString)
-if(args === undefined){
+// const jsonString = JSON.stringify(inputNew);
+// fs.writeFileSync('data.json', jsonString)
+if(args1 === undefined){
     console.log(daftarList)
 }else{
-    console.log('Data Added!')
+    if(args1 === "help"){
+        console.log(daftarList);
+    }else if(args1 === "list"){
+        console.log("Daftar pekerjaan");
+        for (let i = 0; i < data.length; i++) {
+            console.log(`${i + 1}. [ ] ${data[i].task}`)    
+        }
+    }else if(args1 === 'task'){
+        console.log("data ke i telah di tugaskan")
+    }else if(args1 === 'add'){
+        console.log("data ke i telah di add dari daftar")
+    }else if(args1 === 'delete'){
+        console.log("data ke i telah di hapus dari daftar")
+    }else if(args1 === 'complete'){
+        console.log("data ke i telah selesai")
+    }else if(args1 === 'uncompleted'){
+        console.log("data ke i belum selesai")
+    }else if(args1 === 'list:outstanding'){
+        if(args2 == 'asc'){
+            for (let i = 0; i < data.length; i++) {
+                console.log(`${i+1}.[ ] ${data[i].task}`)    
+            }
+        }else{
+            for (let j = data.length -1 ; j >= 0; j--) {
+                console.log(`${j+1}.[ ] ${data[j].task}`)
+            }
+        }
+    }else if(args1 === 'list:completed'){
+        if(args2 == 'asc'){
+            for (let i = 0; i < data.length; i++) {
+                console.log(`${i+1}.[x] ${data[i].task}`)    
+            }
+        }else{
+            for (let j = data.length -1 ; j >= 0; j--) {
+                console.log(`${j+1}.[x] ${data[j].task}`)
+            }
+        }
+    }else if(args1 === 'filter'){
+        console.log("data ke i  yg difilter")
+    }else{
+        console.log("tag data")
+    }
 }

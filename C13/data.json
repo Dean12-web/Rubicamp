@@ -1,1 +1,7 @@
-[{"number":1,"task":"Saya mau pergi lagi"},{"number":2,"task":"Saya mau pergi"}]
+[{
+    "number": 1,
+    "task": "Saya mau pergi lagi"
+}, {
+    "number": "",
+    "task": "Saya mau pergi"
+}]
