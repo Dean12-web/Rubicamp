@@ -21,8 +21,6 @@ $ node daftar.js filter:<tag_name>`
 let rawdata = fs.readFileSync('data.json');
 let data = JSON.parse(rawdata)
 
-// const jsonString = JSON.stringify(inputNew);
-// fs.writeFileSync('data.json', jsonString)
 if(args1 === undefined){
     console.log(daftarList)
 }else{
@@ -34,16 +32,21 @@ if(args1 === undefined){
             console.log(`${i + 1}. [${data[i].complete ? 'X' : ' '}] ${data[i].task_content}`)    
         }
     }else if(args1 === 'task'){
-        console.log("data ke i telah di tugaskan")
+        console.log("Daftar Pekerjaan")
+        for (let i = 0; i < data.length; i++){
+            if(args2 === data[i].task_id){
+                console.log(`task_id : ${data[i].task_id} ${data[i].task_content}`)
+            }
+        }
     }else if(args1 === 'add'){
         data.push({"task_id" : "5","task_content" : "Saya pergi kepasar hari ini","status" : false, })
-        fs.writeFileSync('data.json', JSON.stringify(data));
+        fs.writeFileSync('data.json', JSON.stringify(data))
         console.log("data ke i telah di add dari daftar")
     }else if(args1 === 'delete'){
         let deleteData = parseInt(data[3] - 1 );
         data.splice(deleteData,1);
         fs.writeFileSync('data.json', JSON.stringify(data))
-        console.log("data ke i telah di hapus dari daftar")
+        // console.log(`${task_id} telah di hapus dari daftar`)
     }else if(args1 === 'complete'){
         console.log("data ke i telah selesai")
     }else if(args1 === 'uncompleted'){
