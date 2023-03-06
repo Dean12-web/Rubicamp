@@ -29,23 +29,32 @@ if(args1 === undefined){
     }else if(args1 === "list"){
         console.log("Daftar pekerjaan");
         for (let i = 0; i < data.length; i++) {
-            console.log(`${i + 1}. [${data[i].complete ? 'X' : ' '}] ${data[i].task_content}`)    
+            console.log(`${i+1}. [${data[i].status ? 'X' : ' '}] ${data[i].task_content}`)    
         }
     }else if(args1 === 'task'){
-        console.log("Daftar Pekerjaan")
+        // console.log("Daftar Pekerjaan")
         for (let i = 0; i < data.length; i++){
-            if(args2 === data[i].task_id){
-                console.log(`task_id : ${data[i].task_id} ${data[i].task_content}`)
+            if(args2 == data[i].task_id){
+                console.log(`task_id : ${data[i].task_id} [${data[i].status ? 'X' : ' '}] ${data[i].task_content}`)
             }
         }
     }else if(args1 === 'add'){
-        data.push({"task_id" : "5","task_content" : "Saya pergi kepasar hari ini","status" : false, })
-        fs.writeFileSync('data.json', JSON.stringify(data))
-        console.log("data ke i telah di add dari daftar")
+        let input = args2;
+        let indexAdd = 1;
+        let task = "Saya akan mencuci"
+        for (let i = 0; i < data.length; i++) {
+            indexAdd++
+        }
+        data.push({
+            "task_id" : indexAdd,
+            "task_content" : task,
+            "status" : false, 
+        })
+        fs.writeFileSync('data.json', JSON.stringify(data,null,4))
+        console.log(`"${task}" telah di tambahkan`)
     }else if(args1 === 'delete'){
-        let deleteData = parseInt(data[3] - 1 );
-        data.splice(deleteData,1);
-        fs.writeFileSync('data.json', JSON.stringify(data))
+        data.splice(data,1);
+        fs.writeFileSync('data.json', JSON.stringify(data, null, 4))
         // console.log(`${task_id} telah di hapus dari daftar`)
     }else if(args1 === 'complete'){
         console.log("data ke i telah selesai")

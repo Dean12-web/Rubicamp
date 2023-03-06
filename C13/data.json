@@ -1,1 +1,17 @@
-[{"task_id":"5","task_content":"Saya pergi kepasar hari ini","status":false},{"task_id":"1","task_content":"Saya pergi kepasar hari ini","status":false}]
+[
+    {
+        "task_id": 1,
+        "task_content": "Saya akan memancing",
+        "status": false
+    },
+    {
+        "task_id": 2,
+        "task_content": "Saya akan mencuci",
+        "status": false
+    },
+    {
+        "task_id": 3,
+        "task_content": "Saya akan memasak",
+        "status": true
+    }
+]
