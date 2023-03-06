@@ -63,27 +63,27 @@ if(args1 === undefined){
     }else if(args1 === 'list:outstanding'){
         if(args2 == 'asc'){
             for (let i = 0; i < data.length; i++) {
-                if(data[i].complete === false){
+                if(data[i].status === false){
                     console.log(`${i+1}.[ ] ${data[i].task_content}`)    
                 }   
             }
         }else{
             for (let j = data.length -1 ; j >= 0; j--) {
-                if(data[i].complete === false){
-                    console.log(`${i+1}.[ ] ${data[i].task_content}`)    
+                if(data[j].status === false){
+                    console.log(`${j+1}.[ ] ${data[j].task_content}`)    
                 }
             }
         }
     }else if(args1 === 'list:completed'){
         if(args2 == 'asc'){
             for (let i = 0; i < data.length; i++) {
-                if(data[i].complete === true){
+                if(data[i].status === true){
                     console.log(`${i+0}.[X] ${data[i].task_content}`)    
                 }
             }
         }else{
             for (let j = data.length -1 ; j >= 0; j--) {
-                if(data[j].complete === true){
+                if(data[j].status === true){
                     console.log(`${j+0}.[X] ${data[j].task_content}`)    
                 }
             }
