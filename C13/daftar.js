@@ -15,8 +15,8 @@ $ node daftar.js list
 $ node daftar.js task <task_id>
 $ node daftar.js add <task_content
 $ node daftar.js delete <task_id>
-$ node daftar.js complete <task_id>
-$ node daftar.js uncompleted (ctask_id)
+$ node daftar.js completed <task_id>
+$ node daftar.js uncompleted (task_id)
 $ node daftar.js list:outstanding asc|desc
 $ node daftar.js list:completed asc|desc
 $ node daftar.js tag <task_id> <tag_name_1> <tag_name_2> ... <tag_name_N>
@@ -69,7 +69,7 @@ if(args1 === undefined){
         data.splice(indexDelete, 1);
         fs.writeFileSync('data.json', JSON.stringify(data,null,4))
         console.log(`${dataItem.task_content} telah di hapus dari daftar`)
-    }else if(args1 === 'complete'){
+    }else if(args1 === 'completed'){
         let indexComplete = parseInt(args2) - 1;
         let dataItem = data[indexComplete];
         let complete = data[indexComplete].status = true;
@@ -126,9 +126,16 @@ if(args1 === undefined){
         fs.writeFileSync('data.json', JSON.stringify(data, null, 4));
         console.log(`Tags '${words.trim()}' telah ditambahkan ke daftar ${tag.task_content}`)
     }else{
-        console.log("Daftar Pekerjaan")
-        for (let i = 0; i < data.length; i++) {
-            console.log(`${i+1}. [${data[i].status ? 'X' : ' '}] ${data[i].task_content}`)    
+        const filter = args1.split(':');
+        if (filter[0] === 'filter') {
+            console.log("Daftar Pekerjaan")
+            for (let i = 0; i < data.length; i++) {
+                if (data[i].tag.includes(filter[1])) {
+                    console.log(`${i+1}. [${data[i].status ? 'X' : ' '}] ${data[i].task_content}`)
+                }               
+            }
+        }else{
+            console.log(daftarList)
         }
     }
 }
