@@ -70,9 +70,17 @@ if(args1 === undefined){
         fs.writeFileSync('data.json', JSON.stringify(data,null,4))
         console.log(`${dataItem.task_content} telah di hapus dari daftar`)
     }else if(args1 === 'complete'){
-        console.log("data ke i telah selesai")
+        let completeData = parseInt(args2) - 1;
+        let dataItem = data[completeData];
+        let complete = data[completeData].status = true;
+        fs.writeFileSync('data.json', JSON.stringify(data,null,4))
+        console.log(`"${dataItem.task_content}" telah selesai`)
     }else if(args1 === 'uncompleted'){
-        console.log("data ke i belum selesai")
+        let completeData = parseInt(args2) - 1;
+        let dataItem = data[completeData];
+        let complete = data[completeData].status = false;
+        fs.writeFileSync('data.json', JSON.stringify(data,null,4))
+        console.log(`"${dataItem.task_content}" status selesai dibatalkan`)
     }else if(args1 === 'list:outstanding'){
         if(args2 == 'asc'){
             console.log("Daftar Pekerjaan")

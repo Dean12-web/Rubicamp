@@ -7,14 +7,14 @@
     },
     {
         "task_id": 3,
-        "task_content": "saya akan mencuci",
-        "status": false,
+        "task_content": "saya akan memasak",
+        "status": true,
         "tags": []
     },
     {
         "task_id": 4,
-        "task_content": "saya akan mencuci",
-        "status": false,
+        "task_content": "saya akan menjemur",
+        "status": true,
         "tags": []
     }
 ]
