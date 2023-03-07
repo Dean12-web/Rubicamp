@@ -1,17 +1,8 @@
 [
     {
-        "task_id": 1,
-        "task_content": "Saya akan memancing",
-        "status": false
-    },
-    {
         "task_id": 2,
-        "task_content": "Saya akan mencuci",
-        "status": false
-    },
-    {
-        "task_id": 3,
-        "task_content": "Saya akan memasak",
-        "status": true
+        "task_content": "saya 1",
+        "status": false,
+        "tags": []
     }
 ]
