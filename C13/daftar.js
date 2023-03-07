@@ -63,10 +63,12 @@ if(args1 === undefined){
         fs.writeFileSync('data.json', JSON.stringify(data,null,4))
         console.log(`"${sentence}" telah di tambahkan`)
     }else if(args1 === 'delete'){
-        const deleteData = data.task_content;
-        data.splice(parseInt(args2) - 1, 1);
+        let deleteData = parseInt(args2) - 1;
+        // console.log(deleteData)
+        let dataItem = data[deleteData];
+        data.splice(deleteData, 1);
         fs.writeFileSync('data.json', JSON.stringify(data,null,4))
-        console.log(`${deleteData} telah di hapus dari daftar`)
+        console.log(`${dataItem.task_content} telah di hapus dari daftar`)
     }else if(args1 === 'complete'){
         console.log("data ke i telah selesai")
     }else if(args1 === 'uncompleted'){
