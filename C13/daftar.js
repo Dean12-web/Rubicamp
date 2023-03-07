@@ -58,27 +58,27 @@ if(args1 === undefined){
             "task_id" : index,
             "task_content" : sentence.trim(),
             "status" : false,
-            "tags"   : []
+            "tag"   : []
         })
         fs.writeFileSync('data.json', JSON.stringify(data,null,4))
-        console.log(`"${sentence}" telah di tambahkan`)
+        console.log(`"${sentence.trim()}" telah di tambahkan`)
     }else if(args1 === 'delete'){
-        let deleteData = parseInt(args2) - 1;
-        // console.log(deleteData)
-        let dataItem = data[deleteData];
-        data.splice(deleteData, 1);
+        let indexDelete = parseInt(args2) - 1;
+        console.log(indexDelete)
+        let dataItem = data[indexDelete];
+        data.splice(indexDelete, 1);
         fs.writeFileSync('data.json', JSON.stringify(data,null,4))
         console.log(`${dataItem.task_content} telah di hapus dari daftar`)
     }else if(args1 === 'complete'){
-        let completeData = parseInt(args2) - 1;
-        let dataItem = data[completeData];
-        let complete = data[completeData].status = true;
+        let indexComplete = parseInt(args2) - 1;
+        let dataItem = data[indexComplete];
+        let complete = data[indexComplete].status = true;
         fs.writeFileSync('data.json', JSON.stringify(data,null,4))
         console.log(`"${dataItem.task_content}" telah selesai`)
     }else if(args1 === 'uncompleted'){
-        let completeData = parseInt(args2) - 1;
-        let dataItem = data[completeData];
-        let complete = data[completeData].status = false;
+        let indexComplete = parseInt(args2) - 1;
+        let dataItem = data[indexComplete];
+        let complete = data[indexComplete].status = false;
         fs.writeFileSync('data.json', JSON.stringify(data,null,4))
         console.log(`"${dataItem.task_content}" status selesai dibatalkan`)
     }else if(args1 === 'list:outstanding'){
@@ -113,14 +113,22 @@ if(args1 === undefined){
                 }
             }
         }
-    }else if(args1 === 'tags'){
-        let inputId = args2;
-        let inputTag = process.argv[4];
-        data.push({
-            "tags" : inputTag,
-        })
+    }else if(args1 === 'tag'){
+        let indexTags = parseInt(args2) - 1;
+        let words = '';
+        let tags = data[indexTags].tag;
+        let tag = data[indexTags]
+        for (let i = 4; i < args.length; i++) {
+                tags.push(args[i]);
+                console.log(args[i])
+                words += args[i] + ' ';
+        }   
         fs.writeFileSync('data.json', JSON.stringify(data, null, 4));
+        console.log(`Tags '${words.trim()}' telah ditambahkan ke daftar ${tag.task_content}`)
     }else{
-        console.log("Filter Data")
+        console.log("Daftar Pekerjaan")
+        for (let i = 0; i < data.length; i++) {
+            console.log(`${i+1}. [${data[i].status ? 'X' : ' '}] ${data[i].task_content}`)    
+        }
     }
 }

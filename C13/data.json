@@ -1,20 +1,28 @@
 [
     {
-        "task_id": 2,
+        "task_id": 1,
         "task_content": "saya akan mencuci",
         "status": false,
-        "tags": []
+        "tag": [
+            "baju",
+            "uang",
+            "piring"
+        ]
+    },
+    {
+        "task_id": 2,
+        "task_content": "saya akan memasak",
+        "status": true,
+        "tag": [
+            "nasi"
+        ]
     },
     {
         "task_id": 3,
-        "task_content": "saya akan memasak",
-        "status": true,
-        "tags": []
-    },
-    {
-        "task_id": 4,
-        "task_content": "saya akan menjemur",
-        "status": true,
-        "tags": []
+        "task_content": "saya akan pergi",
+        "status": false,
+        "tag": [
+            "jogging"
+        ]
     }
 ]
