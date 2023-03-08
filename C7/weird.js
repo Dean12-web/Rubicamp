@@ -1,12 +1,12 @@
-function weirdMultiply(sentence) {
+const weirdMultiply = (sentence) => {
     const value = sentence.toString();
-    const arr = value.split('');
+    const arr = Array.from(value);
     let multiple = 1;
-    if (value.length == 1) {
+    if(value.length == 1){
         return value;
-    } else {
+    }else{
         for (let i = 0; i < arr.length; i++) {
-            multiple *= parseInt(arr[i]);
+            multiple *= arr[i];
         }
         return weirdMultiply(multiple);
     }
