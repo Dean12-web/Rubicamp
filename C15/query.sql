@@ -8,8 +8,10 @@ SELECT * FROM mahasiswa WHERE umur < 20;
 SELECT mahasiswa.nim, mahasiswa.nama_mhs, kontrak.nilai FROM mahasiswa INNER JOIN kontrak ON mahasiswa.nim = kontrak.nim WHERE kontrak.nilai = 'A' OR kontrak.nilai = 'B';
 
 -- 4. Tampilkan mahasiswa yang memiliki jumlah SKS lebih dari 10;
+SELECT kontrak.nim, mahasiswa.nama_mhs, matakuliah.nama_mk FROM kontrak INNER JOIN mahasiswa ON kontrak.nim = mahasiswa.nim INNER JOIN matakuliah ON kontrak.id_matakuliah = matakuliah.id_matakuliah GROUP BY kontrak.nim HAVING matakuliah.sks > 10;
 
 -- 5. Tampilkan mahasiswa yang mengontrak mata kuliah 'data mining';
+SELECT kontrak.nim, mahasiswa.nama_mhs, matakuliah.nama_mk FROM kontrak INNER JOIN mahasiswa ON kontrak.nim = mahasiswa.nim INNER JOIN matakuliah ON kontrak.id_matakuliah = matakuliah.id_matakuliah WHERE matakuliah.nama_mk = 'Data Mining';
 
 -- 6. Tampilkan jumlah mahasiswa untuk setiap dosen;
 -- 7. Urutkan mahasiswa berdasarkan umurnya.
