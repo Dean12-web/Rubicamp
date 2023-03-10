@@ -72,4 +72,5 @@ SELECT mahasiswa.nim, mahasiswa.nama_mhs, mahasiswa.alamat, jurusan.nama_jurusan
 FROM mahasiswa INNER JOIN jurusan on mahasiswa.id_jurusan = jurusan.id_jurusan 
 INNER JOIN kontrak on mahasiswa.nim = kontrak.nim 
 INNER JOIN dosen on dosen.nip = kontrak.nip WHERE kontrak.nilai BETWEEN 'D' AND 'E';
+-- INNER JOIN dosen on dosen.nip = kontrak.nip WHERE kontrak.nilai = 'D' OR kontrak.nilai = 'E';
 -- gunakan mode JOIN dan WHERE clause;
