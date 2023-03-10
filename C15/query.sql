@@ -3,8 +3,12 @@ SELECT nim, nama_mhs, alamat, jurusan.nama_jurusan FROM mahasiswa INNER JOIN jur
 
 -- 2. Tampilkan mahasiswa yang memiliki umur dibawah 20 tahun;
 SELECT * FROM mahasiswa WHERE umur < 20;
+
 -- 3. Tampilkan mahasiswa yang memiliki nilai 'B' ke atas;
+SELECT mahasiswa.nim, mahasiswa.nama_mhs, kontrak.nilai FROM mahasiswa INNER JOIN kontrak ON mahasiswa.nim = kontrak.nim WHERE kontrak.nilai = 'A' OR kontrak.nilai = 'B';
+
 -- 4. Tampilkan mahasiswa yang memiliki jumlah SKS lebih dari 10;
+
 -- 5. Tampilkan mahasiswa yang mengontrak mata kuliah 'data mining';
 
 -- 6. Tampilkan jumlah mahasiswa untuk setiap dosen;
