@@ -60,8 +60,8 @@ INNER JOIN matakuliah ON kontrak.id_matakuliah = matakuliah.id_matakuliah
 WHERE matakuliah.nama_mk = 'Data Mining';
 
 -- 6. Tampilkan jumlah mahasiswa untuk setiap dosen;
-SELECT dosen.nip, dosen.nama_dosen, COUNT(mahasiswa.nim) as jumlah_mhs 
-FROM dosen INNER JOIN kontrak ON dosen.nip = kontrak.nip
+SELECT dosen.nip, dosen.nama_dosen, COUNT(DISTINCT mahasiswa.nim) as jumlah_mhs 
+FROM dosen INNER JOIN kontrak ON dosen.nip = kontrak.nip 
 INNER JOIN mahasiswa ON mahasiswa.nim = kontrak.nim GROUP BY dosen.nip;
 
 -- 7. Urutkan mahasiswa berdasarkan umurnya.
@@ -74,3 +74,4 @@ INNER JOIN kontrak on mahasiswa.nim = kontrak.nim
 INNER JOIN dosen on dosen.nip = kontrak.nip WHERE kontrak.nilai BETWEEN 'D' AND 'E';
 -- INNER JOIN dosen on dosen.nip = kontrak.nip WHERE kontrak.nilai = 'D' OR kontrak.nilai = 'E';
 -- gunakan mode JOIN dan WHERE clause;
+
