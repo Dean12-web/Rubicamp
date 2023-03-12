@@ -1,41 +1,48 @@
 class Tyre {
-    constructor(){
-        const arrBrand = ['dunlop', 'Bridgestone']
-        const arrSize  = [15,17]
-        this.brand = arrBrand[Math.floor(Math.random() * 2)];
-        this.size = arrSize[Math.floor(Math.random() * 2)];
+    constructor(brand,size){
+        brand = ['dunlop', 'Bridgestone'];
+        this._brand = brand[Math.floor(Math.random() * 2)] 
+        size = [15,17]
+        this._size = size[Math.floor(Math.random() * 2)]
     }
-    result() {
-        const carBrand = `tyre : ${this.brand} ${this.size} inch`
-        return carBrand
-    }
-
 }
-const tyre = new Tyre();
-console.log(tyre.result())
+// const tyre = new Tyre();
+// console.log(tyre.result())
 
-// class Car {
-//     constructor(door, seat, serialNumber, year) {
-//         this.door = door 
-//         this.seat = seat
-//         this.serialNumber = serialNumber
-//         this.year = year;
-//     }
+class Car {
+    constructor(varian, serialNumber, door, seat, year, warranty,brand, size) {
+        this.newVarian = varian
+        this.newSerialNumber = serialNumber
+        this.newDoor = door 
+        this.newSeat = seat
+        this.newTyre = new Tyre(brand,size)
+        this.newYear = year;
+        this.newWarranty = warranty
+    }
 
-//     door() {
-        
-//     }
+    varian() {
+        return this.newVarian;
+    }
+    serialNumber (){
+        return this.newSerialNumber;
+    }
+    door() {
+        return this.newDoor;   
+    }
+    seat() {
+        return this.newSeat;
+    }
+    tyre() {
+        return this.newTyre;
+    }  
+    year() {
+        return this.newYear;   
+    }
+    warranty() {
+        return this.newWarranty;
+    }
+}
 
-//     seat() {
-
-//     }
-
-//     serialNumber (){
-
-//     }
-
-//     year () {
-
-//     }
-// }
+const toyota = new Car('agya', 'sn', 5, 5, 2020, 1)
+console.log(toyota.varian())
 
