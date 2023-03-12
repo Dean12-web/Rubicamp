@@ -1,30 +1,41 @@
 class Tyre {
-    constructor(brand, size){
-
+    constructor(){
+        const arrBrand = ['dunlop', 'Bridgestone']
+        const arrSize  = [15,17]
+        this.brand = arrBrand[Math.floor(Math.random() * 2)];
+        this.size = arrSize[Math.floor(Math.random() * 2)];
     }
+    result() {
+        const carBrand = `tyre : ${this.brand} ${this.size} inch`
+        return carBrand
+    }
+
 }
+const tyre = new Tyre();
+console.log(tyre.result())
 
-class Car {
+// class Car {
+//     constructor(door, seat, serialNumber, year) {
+//         this.door = door 
+//         this.seat = seat
+//         this.serialNumber = serialNumber
+//         this.year = year;
+//     }
 
-}
+//     door() {
+        
+//     }
 
-class CarFactory {
-    constructor() {
-        this.cars = []
-    }
+//     seat() {
 
-    produce(year) {
+//     }
 
-    }
+//     serialNumber (){
 
-    guaranteeSimulation(simulationYear) {
+//     }
 
-    }
-}
+//     year () {
 
-const toyota = new CarFactory()
-toyota.produce(2020)
-toyota.produce(2020)
-toyota.result()
-toyota.guaranteeSimulation(2025)
+//     }
+// }
 
