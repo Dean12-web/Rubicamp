@@ -4,15 +4,16 @@ class CarFactory {
         this.cars = []
     }
     produce(year) {
-        for (let i = 1; i <= 3; i++) {
+        const totalAgya = Car.generateRandom(1,5);
+        for (let i = 1; i <= totalAgya; i++) {
             const makeAgya = new Agya(year);
             this.cars.push(makeAgya.produceAgya());
         }
-        for (let i = 1; i <= 3; i++) {
+        const totalRush = Car.generateRandom(1,5);
+        for (let i = 1; i <= totalRush; i++) {
             const makeRush = new Rush(year);
             this.cars.push(makeRush.produceRush());
         }
-
     }
     result() {
         this.cars.forEach((item, index) => {
@@ -23,7 +24,7 @@ class CarFactory {
             console.log(`seat         : ${item.seat}`);
             console.log(`tyre         : ${item.tyre}`);
             console.log(`year         : ${item.year}`);
-            console.log(`warranty     : ${item.warranty} \n`);
+            console.log(`warranty     : ${item.warranty} year\n`);
         });
     }
 
@@ -41,20 +42,28 @@ class CarFactory {
             console.log(`seat         : ${item.seat}`);
             console.log(`tyre         : ${item.tyre}`);
             console.log(`year         : ${item.year}`);
-            console.log(`warranty     : ${item.warranty}`);
-            console.log(`status on ${simulationYear} this guarantee status is expired \n`)
+            console.log(`warranty     : ${item.warranty} year`);
+            let stat ="";
+            let result = item.year + item.warranty
+            if(result >= simulationYear){
+                stat = "active"
+            }else{
+                stat = "expired"
+            }
+            stat
+            console.log(`status on ${simulationYear} this guarantee status is ${stat} \n`)
         });
     }
 }
 
 class Car {
-    constructor(year, seat, door, warranty, number) {
+    constructor(year, seat, door, warranty, number, tyre) {
         this.produceNumber = number
         this.seatProduce = seat,
         this.yearProduce = year,
         this.doorProduce = door,
         this.warrantyProduce = warranty,
-        this.tyreProduce = new Tyre()
+        this.tyreProduce = tyre
     }
     generateSerialNumber() {
         const chars = '1234567890abcdefghijklmnopqrstuvwxyz';
@@ -80,24 +89,22 @@ class Car {
         return `${randomSerial}-${randomSerial2}-${randomSerial3}-${randomSerial4}`
     }
     seat() {
-        this.seatProduce = [5, 7]
         return this.seatProduce;
     }
     year() {
         return this.yearProduce;
     }
     door() {
-        this.doorProduce = 4
         return this.doorProduce;
     }
     number() {
         return this.produceNumber
     }
     tyre() {
-        return `${this.tyreProduce.brand()} ${this.tyreProduce.size()} inch`;
+        return this.tyreProduce
     }
     warranty() {
-        this.warrantyProduce = Car.generateRandom(1, 5);
+        this.warrantyProduce = Car.generateRandom(1, 3);
         return this.warrantyProduce;
     }
     static generateRandom(min, max) {
@@ -111,10 +118,8 @@ class Car {
 
 class Tyre {
     constructor(brand, size) {
-        brand = ['Dunlop', 'Bridgestone'];
-        this._brand = brand[Math.floor(Math.random() * 2)]
-        size = [15, 17]
-        this._size = size[Math.floor(Math.random() * 2)]
+        this._brand = brand,
+        this._size = size
     }
     brand() {
         return `${this._brand}`;
@@ -131,10 +136,10 @@ class Agya extends Car {
             varian: "Agya",
             sn: this.generateSerialNumber(),
             door: this.door(),
-            seat: `${this.seat()} seater`,
-            tyre: this.tyre(),
+            seat: `5 seater`,
+            tyre: `Dunlop 15 inch`,
             year: this.year(),
-            warranty: `${this.warranty()} year`
+            warranty: this.warranty()
         }
         return obj
     }
@@ -142,20 +147,19 @@ class Agya extends Car {
 class Rush extends Car {
     produceRush() {
         const obj = {
-            // no : this.number(),
             varian: "Rush",
             sn: this.generateSerialNumber(),
             door: this.door(),
-            seat: `${this.seat()} seater`,
-            tyre: this.tyre(),
+            seat: `7 seater`,
+            tyre: `Bridgestone 17 inch`,
             year: this.year(),
-            warranty: `${this.warranty()} year`
+            warranty: this.warranty()
         }
         return obj
     }
 }
 const toyota = new CarFactory()
+toyota.produce(2020)
 toyota.produce(2022)
-// toyota.produce(2023)
 // toyota.result()
 toyota.guaranteeSimulation(2025)
