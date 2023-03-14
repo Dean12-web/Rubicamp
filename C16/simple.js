@@ -1,6 +1,6 @@
 class CarFactory {
     constructor() {
-        // console.log("Hasil produksi :")
+        console.log("Hasil produksi :")
         this.cars = []
     }
     produce(year) {
@@ -42,7 +42,7 @@ class CarFactory {
             console.log(`seat         : ${item.seat}`);
             console.log(`tyre         : ${item.tyre}`);
             console.log(`year         : ${item.year}`);
-            console.log(`warranty     : ${item.warranty} year`);
+            console.log(`warranty     : ${item.warranty} year \n`);
             let stat ="";
             let result = item.year + item.warranty
             if(result >= simulationYear){
@@ -95,6 +95,7 @@ class Car {
         return this.yearProduce;
     }
     door() {
+        this.doorProduce = 4;
         return this.doorProduce;
     }
     number() {
@@ -132,7 +133,6 @@ class Tyre {
 class Agya extends Car {
     produceAgya() {
         const obj = {
-            // no : this.number(),
             varian: "Agya",
             sn: this.generateSerialNumber(),
             door: this.door(),
@@ -161,5 +161,5 @@ class Rush extends Car {
 const toyota = new CarFactory()
 toyota.produce(2020)
 toyota.produce(2022)
-// toyota.result()
+toyota.result()
 toyota.guaranteeSimulation(2025)
