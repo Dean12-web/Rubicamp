@@ -22,15 +22,11 @@ INSERT INTO mahasiswa (NIM, Nama, Tanggal_Lahir, Alamat, Kode_Jurusan) VALUES
     ( '2022070008','Zakka',date('1998-12-07'), 'Lampung', 'J010' ),
     ( '2022070010','Agung',date('2002-09-13'), 'Bandung', 'J003' );
 
--- DAFTAR MAHASISWA
-SELECT mahasiswa.NIM, mahasiswa.Nama, mahasiswa.Tanggal_Lahir, mahasiswa.Alamat, jurusan.Kode_Jurusan, jurusan.Nama_Jurusan FROM mahasiswa INNER JOIN jurusan ON mahasiswa.Kode_Jurusan = jurusan.Kode_Jurusan;
 
 
-SELECT * FROM mahasiswa WHERE NIM LIKE '2022070005%';
+
 -- DELETE DATA MAHASISWA
 DELETE FROM mahasiswa WHERE NIM = 2022070011;
-
-
 
 
 -- TABLE JURUSAN
@@ -86,16 +82,26 @@ CREATE TABLE kontrak (
     NIM CHARACTER(10) NOT NULL,
     NIP CHARACTER(5) NOT NULL,
     Kode_Matkul CHARACTER(4) NOT NULL,
-    Nilai CHARACTER(3) NOT NULL,
+    Nilai CHARACTER(3),
     FOREIGN KEY(NIM) REFERENCES mahasiswa(NIM),
     FOREIGN KEY(NIP) REFERENCES dosen(NIP),
     FOREIGN KEY(Kode_Matkul) REFERENCES mata_kuliah(Kode_Matkul)
 );
-INSERT INTO kontrak VALUES
-('2022070001', 'D2201', 'MK01', 'C');
+-- ('2022070001', 'D2204','MK04')
+INSERT INTO kontrak(NIM, NIP, Kode_Matkul) VALUES('2022070001', 'D2204','MK04');
+-- ('2022070001', 'D2201', 'MK01', 'C'),
+-- ('2022070002', 'D2201', 'MK01', 'A+'),
+-- ('2022070003', 'D2204', 'MK04', 'B'),
+-- ('2022070004', 'D2202', 'MK02', 'B+'),
+-- ('2022070010', 'D2205', 'MK03', 'A'),
+-- ('2022070009', 'D2204', 'MK04', 'A++'),
+-- ('2022070008', 'D2203', 'MK01', 'B+'),
+-- ('2022070007', 'D2202', 'MK05', 'A'),
+-- ('2022070006', 'D2204', 'MK04', 'B+'),
+-- ('2022070005', 'D2203', 'MK01', 'C+');
+-- (15, '2022070001', 'D2202', 'MK02', 'A');
 
--- Daftar Kontrak
-SELECT kontrak.id,kontrak.nim, mahasiswa.nama, mata_kuliah.Nama_Matkul, dosen.nama_dosen, kontrak.nilai FROM kontrak INNER JOIN mahasiswa ON kontrak.NIM = mahasiswa.NIM INNER JOIN mata_kuliah ON kontrak.Kode_Matkul = mata_kuliah.Kode_Matkul INNER JOIN dosen ON kontrak.NIP = dosen.NIP;
+
 
 
 -- TABLE USER
@@ -106,3 +112,23 @@ CREATE TABLE user (
     password CHARACTER(10) NOT NULL,
     role CHARACTER(20)
 );
+
+-- DAFTAR MAHASISWA
+SELECT mahasiswa.NIM, mahasiswa.Nama, mahasiswa.Tanggal_Lahir, mahasiswa.Alamat, jurusan.Kode_Jurusan, jurusan.Nama_Jurusan FROM mahasiswa INNER JOIN jurusan ON mahasiswa.Kode_Jurusan = jurusan.Kode_Jurusan;
+
+-- Daftar Kontrak
+SELECT kontrak.id,kontrak.nim, mahasiswa.nama, mata_kuliah.Nama_Matkul, dosen.nama_dosen, kontrak.nilai FROM kontrak INNER JOIN mahasiswa ON kontrak.NIM = mahasiswa.NIM INNER JOIN mata_kuliah ON kontrak.Kode_Matkul = mata_kuliah.Kode_Matkul INNER JOIN dosen ON kontrak.NIP = dosen.NIP;
+
+-- SEARCH MAHASISWA
+SELECT * FROM mahasiswa WHERE NIM LIKE '2022070005%';
+
+-- JURUSAN
+SELECT * FROM jurusan;
+
+-- MATA KULIAH
+SELECT * FROM mata_kuliah;
+
+-- DOSEN
+SELECT * FROM dosen;
+
+
