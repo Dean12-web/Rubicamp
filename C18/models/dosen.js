@@ -23,74 +23,80 @@ function optionDosen(){
     line()
 }
 
-function daftarDosen() {
-    const sql = 'SELECT * FROM dosen';
-    db.all(sql, (err, rows) =>{
-        if (err) throw err;
-
-        const table = new Table({
-            head: ['NIP', 'Nama Dosen']
-        });
-
-        rows.forEach((sql) => {
-            table.push([sql.NIP, sql.Nama_Dosen])
-        });
-
-        console.log(table.toString());
-
-        rl.close();
-        db.close();
-    });
-}
-function cariDosen() {
-    rl.question('Masukkan NIP Dosen : ', function(search_dosen){
-        const sql = `SELECT * FROM dosen WHERE NIP LIKE '%${search_dosen}%'`;
-        db.all(sql, (err, rows) => {
+class Dosen {
+    static daftarDosen() {
+        const sql = 'SELECT * FROM dosen';
+        db.all(sql, (err, rows) =>{
             if (err) throw err;
-            rows.forEach((dosen) =>{
-                line();
-                console.log(`Detail Dosen dengan NIP '${dosen.NIP}' :`);
-                console.log(`NIP : ${dosen.NIP}`);
-                console.log(`Nama Dosen : ${dosen.Nama_Dosen}`);
+    
+            const table = new Table({
+                head: ['NIP', 'Nama Dosen']
+            });
+    
+            rows.forEach((sql) => {
+                table.push([sql.NIP, sql.Nama_Dosen])
+            });
+    
+            console.log(table.toString());
+    
+            rl.close();
+            db.close();
+        });
+    }
+    
+    static cariDosen() {
+        rl.question('Masukkan NIP Dosen : ', function(search_dosen){
+            const sql = `SELECT * FROM dosen WHERE NIP LIKE '%${search_dosen}%'`;
+            db.all(sql, (err, rows) => {
+                if (err) throw err;
+                rows.forEach((dosen) =>{
+                    line();
+                    console.log(`Detail Dosen dengan NIP '${dosen.NIP}' :`);
+                    console.log(`NIP : ${dosen.NIP}`);
+                    console.log(`Nama Dosen : ${dosen.Nama_Dosen}`);
+                });
+            });
+            rl.close();
+            db.close();
+        });
+    }
+
+    static tambahDosen() {
+        rl.question('NIP Dosen : ', function(NIP_dosen){
+            rl.question('Nama Dosen : ', function(Nama_Dosen){
+                const sql = 'INSERT INTO dosen (NIP, Nama_Dosen) VALUES (?, ?)';
+                db.run(sql, [NIP_dosen, Nama_Dosen], function(err){
+                    if (err) {
+                        console.error(err.message);
+                    }else {
+                        console.log('Dosen telah ditambahkan ke database');
+                    }
+                });
+                rl.close();
+                db.close();
             });
         });
-        rl.close();
-        db.close();
-    });
-}
-function tambahDosen() {
-    rl.question('NIP Dosen : ', function(NIP_dosen){
-        rl.question('Nama Dosen : ', function(Nama_Dosen){
-            const sql = 'INSERT INTO dosen (NIP, Nama_Dosen) VALUES (?, ?)';
-            db.run(sql, [NIP_dosen, Nama_Dosen], function(err){
-                if (err) {
-                    console.error(err.message);
+    }
+
+    static hapusDosen(){
+        rl.question('Masukkan NIP Dosen : ', function(NIP_dosen){
+            const sql = 'DELETE FROM dosen WHERE NIP = ?';
+            db.run(sql, [NIP_dosen], function (err){
+                if (err){
+                    console.error(err.message)
                 }else {
-                    console.log('Dosen telah ditambahkan ke database');
+                    console.log(`Data dosen ${NIP_dosen}, telah dihapus.`)
                 }
             });
             rl.close();
             db.close();
         });
-    });
-}
-function hapusDosen(){
-    rl.question('Masukkan NIP dosen : ', function(NIP_dosen){
-        const sql = 'DELETE FROM dosen WHERE NIP = ?';
-        db.run(sql, [NIP_dosen], function (err){
-            if (err){
-                console.error(err.message)
-            }else {
-                console.log(`Data dosen ${NIP_dosen}, telah dihapus.`)
-            }
-        });
-        rl.close();
-        db.close();
-    });
+    }
 }
 
-optionDosen()
-daftarDosen();
-// cariDosen();
-// tambahDosen()
-// hapusDosen()
+
+// optionDosen()
+// Dosen.daftarDosen();
+// Dosen.cariDosen();
+// Dosen.tambahDosen()
+// Dosen.hapusDosen()
