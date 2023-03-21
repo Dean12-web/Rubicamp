@@ -1,87 +1,17 @@
-import readline from 'readline';
-import sqlite3 from 'sqlite3';
-const db = new sqlite3.Database('../universitas.db');
-import Table from 'cli-table3';
+import { DosenController } from "../controllers/dosen.js";
 
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-});
+
 
 class DosenModel {
     static daftarDosen() {
-        const sql = 'SELECT * FROM dosen';
-        db.all(sql, (err, rows) =>{
-            if (err) throw err;
-    
-            const table = new Table({
-                head: ['NIP', 'Nama Dosen']
-            });
-    
-            rows.forEach((sql) => {
-                table.push([sql.NIP, sql.Nama_Dosen])
-            });
-    
-            console.log(table.toString());
-    
-            rl.close();
-            db.close();
-        });
+        DosenController.daftarDosen();
     }
-
     static cariDosen() {
-        rl.question('Masukkan NIP Dosen : ', function(search_dosen){
-            const sql = `SELECT * FROM dosen WHERE NIP LIKE '%${search_dosen}%'`;
-            db.all(sql, (err, rows) => {
-                if (err) throw err;
-                rows.forEach((dosen) =>{
-                    line();
-                    console.log(`Detail Dosen dengan NIP '${dosen.NIP}' :`);
-                    console.log(`NIP : ${dosen.NIP}`);
-                    console.log(`Nama Dosen : ${dosen.Nama_Dosen}`);
-                });
-            });
-            rl.close();
-            db.close();
-        });
+        DosenController.cariDosen();
     }
-
     static tambahDosen() {
-        rl.question('NIP Dosen : ', function(NIP_dosen){
-            rl.question('Nama Dosen : ', function(Nama_Dosen){
-                const sql = 'INSERT INTO dosen (NIP, Nama_Dosen) VALUES (?, ?)';
-                db.run(sql, [NIP_dosen, Nama_Dosen], function(err){
-                    if (err) {
-                        console.error(err.message);
-                    }else {
-                        console.log('Dosen telah ditambahkan ke database');
-                    }
-                });
-                rl.close();
-                db.close();
-            });
-        });
-    }
-
-    static hapusDosen(){
-        rl.question('Masukkan NIP Dosen : ', function(NIP_dosen){
-            const sql = 'DELETE FROM dosen WHERE NIP = ?';
-            db.run(sql, [NIP_dosen], function (err){
-                if (err){
-                    console.error(err.message)
-                }else {
-                    console.log(`Data dosen ${NIP_dosen}, telah dihapus.`)
-                }
-            });
-            rl.close();
-            db.close();
-        });
+        DosenController.tambahDosen();
     }
 }
 
-
-// optionDosen()
-// Dosen.daftarDosen();
-// Dosen.cariDosen();
-// Dosen.tambahDosen()
-// Dosen.hapusDosen()
+export {DosenModel}
