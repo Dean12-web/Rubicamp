@@ -1,29 +1,16 @@
-const readline = require('readline');
-const sqlite3 = require('sqlite3').verbose();
+import readline from 'readline';
+import sqlite3 from 'sqlite3';
 const db = new sqlite3.Database('../universitas.db');
-const Table = require('cli-table');
+import Table from 'cli-table3';
 
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 });
 
-function line(){
-    console.log('===================================================================');
-}
+// view console log doang
 
-function optionMataKuliah(){
-    line();
-    console.log('Silahkan pilih opsi dibawah ini');
-    console.log('[1] Daftar Mata Kuliah');
-    console.log('[2] Cari Mata Kuliah');
-    console.log('[3] Tambah Mata Kuliah');
-    console.log('[4] Hapus Mata Kuliah');
-    console.log('[5] Kembali');
-    line()
-}
-
-class MataKuliah {
+class MatakuliahModel {
     static daftarMataKuliah() {
         const sql = 'SELECT * FROM mata_kuliah';
         db.all(sql, (err, rows) => {

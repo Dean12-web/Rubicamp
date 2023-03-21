@@ -88,21 +88,22 @@ CREATE TABLE kontrak (
     FOREIGN KEY(Kode_Matkul) REFERENCES mata_kuliah(Kode_Matkul)
 );
 -- ('2022070001', 'D2204','MK04')
-INSERT INTO kontrak(NIM, NIP, Kode_Matkul) VALUES('2022070001', 'D2204','MK04');
--- ('2022070001', 'D2201', 'MK01', 'C'),
--- ('2022070002', 'D2201', 'MK01', 'A+'),
--- ('2022070003', 'D2204', 'MK04', 'B'),
--- ('2022070004', 'D2202', 'MK02', 'B+'),
--- ('2022070010', 'D2205', 'MK03', 'A'),
--- ('2022070009', 'D2204', 'MK04', 'A++'),
--- ('2022070008', 'D2203', 'MK01', 'B+'),
--- ('2022070007', 'D2202', 'MK05', 'A'),
--- ('2022070006', 'D2204', 'MK04', 'B+'),
--- ('2022070005', 'D2203', 'MK01', 'C+');
--- (15, '2022070001', 'D2202', 'MK02', 'A');
+--('2022070001', 'D2204','MK04');
+INSERT INTO kontrak(NIM, NIP, Kode_Matkul, Nilai) VALUES ('2022070001', 'D2204','MK04');
+('2022070001', 'D2201', 'MK01', 'C'),
+('2022070002', 'D2201', 'MK01', 'A+'),
+('2022070003', 'D2204', 'MK04', 'B'),
+('2022070004', 'D2202', 'MK02', 'B+'),
+('2022070010', 'D2205', 'MK03', 'A'),
+('2022070009', 'D2204', 'MK04', 'A++'),
+('2022070008', 'D2203', 'MK01', 'B+'),
+('2022070007', 'D2202', 'MK05', 'A'),
+('2022070006', 'D2204', 'MK04', 'B+'),
+('2022070005', 'D2203', 'MK01', 'C+');
+(15, '2022070001', 'D2202', 'MK02', 'A');
 
-
-
+-- UPDATE students SET age = 20 WHERE id = 1;
+UPDATE kontrak SET Nilai = 'A+' WHERE id = 16;
 
 -- TABLE USER
 -- USER_ID (INT), USERNAME (CHAR 20), PASSWORD (CHAR 10)
@@ -112,6 +113,8 @@ CREATE TABLE user (
     password CHARACTER(10) NOT NULL,
     role CHARACTER(20)
 );
+
+INSERT INTO user (id,username,password) VALUES (1,'mahyudin','123');
 
 -- DAFTAR MAHASISWA
 SELECT mahasiswa.NIM, mahasiswa.Nama, mahasiswa.Tanggal_Lahir, mahasiswa.Alamat, jurusan.Kode_Jurusan, jurusan.Nama_Jurusan FROM mahasiswa INNER JOIN jurusan ON mahasiswa.Kode_Jurusan = jurusan.Kode_Jurusan;
@@ -130,5 +133,4 @@ SELECT * FROM mata_kuliah;
 
 -- DOSEN
 SELECT * FROM dosen;
-
 

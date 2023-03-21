@@ -1,29 +1,14 @@
-const readline = require('readline');
-const sqlite3 = require('sqlite3').verbose();
+import readline from 'readline';
+import sqlite3 from 'sqlite3';
 const db = new sqlite3.Database('../universitas.db');
-const Table = require('cli-table');
+import Table from 'cli-table3';
 
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 });
 
-function line(){
-    console.log('===================================================================');
-}
-
-function optionDosen(){
-    line();
-    console.log('Silahkan pilih opsi dibawah ini');
-    console.log('[1] Daftar Dosen');
-    console.log('[2] Cari Dosen');
-    console.log('[3] Tambah Dosen');
-    console.log('[4] Hapus Dosen');
-    console.log('[5] Kembali');
-    line()
-}
-
-class Dosen {
+class DosenModel {
     static daftarDosen() {
         const sql = 'SELECT * FROM dosen';
         db.all(sql, (err, rows) =>{
@@ -43,7 +28,7 @@ class Dosen {
             db.close();
         });
     }
-    
+
     static cariDosen() {
         rl.question('Masukkan NIP Dosen : ', function(search_dosen){
             const sql = `SELECT * FROM dosen WHERE NIP LIKE '%${search_dosen}%'`;

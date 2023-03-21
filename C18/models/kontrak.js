@@ -1,7 +1,7 @@
-const sqlite3 = require('sqlite3').verbose();
+import readline from 'readline';
+import sqlite3 from 'sqlite3';
 const db = new sqlite3.Database('../universitas.db');
-const readline = require('readline')
-const Table = require('cli-table3');
+import Table from 'cli-table3';
 
 
 const rl = readline.createInterface({
@@ -9,22 +9,7 @@ const rl = readline.createInterface({
     output: process.stdout
 })
 
-function line() {
-    console.log('===================================================================');
-}
-
-function optionMahasiswa() {
-    line();
-    console.log('Silahkan pilih opsi dibawah ini');
-    console.log('[1] Daftar Kontrak');
-    console.log('[2] Cari Kontrak');
-    console.log('[3] Tambah Kontrak');
-    console.log('[4] Hapus Kontrak');
-    console.log('[5] Update Nilai');
-    console.log('[6] Kembali');
-    line()
-}
-class Kontrak {
+class KontrakModel {
     static daftarKontrak() {
         const sql = 'SELECT kontrak.id,kontrak.nim, mahasiswa.nama, mata_kuliah.Nama_Matkul, dosen.nama_dosen, kontrak.nilai FROM kontrak INNER JOIN mahasiswa ON kontrak.NIM = mahasiswa.NIM INNER JOIN mata_kuliah ON kontrak.Kode_Matkul = mata_kuliah.Kode_Matkul INNER JOIN dosen ON kontrak.NIP = dosen.NIP';
         db.all(sql, (err, rows) => {

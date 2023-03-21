@@ -1,7 +1,7 @@
-const readline = require('readline');
-const sqlite3 = require('sqlite3').verbose();
-const db = new sqlite3.Database('../universitas.db');
-const Table = require('cli-table');
+import readline from 'readline';
+import sqlite3 from 'sqlite3';
+const db = new sqlite3.Database('./universitas.db');
+import Table from 'cli-table3';
 
 const rl = readline.createInterface({
     input: process.stdin,
@@ -48,17 +48,35 @@ class JurusanModel {
     }
 
     static tambahJurusan(){
-        rl.question('Kode Jurusan : ', function(Kode_Jurusan){
-            rl.question('Nama Jurusan : ', function(Nama_Jurusan){
-                const sql = 'INSERT INTO jurusan (Kode_Jurusan, Nama_Jurusan) VALUES (?, ?)';
-                db.run(sql, [Kode_Jurusan, Nama_Jurusan], function(err){
-                    if (err) {
-                        console.error(err.message);
-                    }else {
-                        console.log('Jurusan telah ditambahkan ke database');
-                    }
-                    rl.close();
-                    db.close();
+        console.log('Lengkapi data dibawah ini : ')
+        const sql = 'SELECT * FROM jurusan';
+        db.all(sql, (err, rows) => {
+            if (err) throw err;
+            // Buat Table 
+            const table = new Table({
+                head: ['Kode Jurusan', 'Nama Jurusan']
+            });
+    
+            // Tambah rows ke Table
+            rows.forEach((sql) => {
+                table.push([sql.Kode_Jurusan, sql.Nama_Jurusan])
+            });
+            rl.pause();
+            // Munculin table di CLI
+            console.log(table.toString());
+            rl.resume();
+            rl.question('Kode Jurusan : ', function (Kode_Jurusan) {
+                rl.question('Nama Jurusan : ', function (Nama_Jurusan) {
+                    const sql = 'INSERT INTO jurusan (Kode_Jurusan, Nama_Jurusan) VALUES (?, ?)';
+                    db.run(sql, [Kode_Jurusan, Nama_Jurusan], function (err) {
+                        if (err) {
+                            console.error(err.message);
+                        } else {
+                            console.log('Jurusan telah ditambahkan ke database');
+                        }
+                        // db.close();
+                        optionJurusan()
+                    });
                 });
             });
         });
@@ -80,7 +98,7 @@ class JurusanModel {
     };
 }
 
-// export { JurusanModel }
+export {JurusanModel}
 // JurusanModel.daftarJurusan();
 // JurusanModel.cariJurusan();
 // JurusanModel.tambahJurusan();
