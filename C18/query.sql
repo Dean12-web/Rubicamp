@@ -122,6 +122,7 @@ SELECT mahasiswa.NIM, mahasiswa.Nama, mahasiswa.Tanggal_Lahir, mahasiswa.Alamat,
 -- Daftar Kontrak
 SELECT kontrak.id,kontrak.nim, mahasiswa.nama, mata_kuliah.Nama_Matkul, dosen.nama_dosen, kontrak.nilai FROM kontrak INNER JOIN mahasiswa ON kontrak.NIM = mahasiswa.NIM INNER JOIN mata_kuliah ON kontrak.Kode_Matkul = mata_kuliah.Kode_Matkul INNER JOIN dosen ON kontrak.NIP = dosen.NIP;
 
+SELECT id, mata_kuliah.Nama_Matkul, kontrak.Nilai FROM kontrak INNER JOIN mahasiswa on kontrak.NIM = mahasiswa.NIM INNER JOIN mata_kuliah on kontrak.Kode_Matkul = mata_kuliah.Kode_Matkul WHERE kontrak.NIM = '2022070001';
 -- SEARCH MAHASISWA
 SELECT * FROM mahasiswa WHERE NIM LIKE '2022070005%';
 

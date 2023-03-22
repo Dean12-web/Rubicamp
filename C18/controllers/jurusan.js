@@ -28,7 +28,7 @@ class JurusanController {
         const sql2 = 'SELECT * FROM jurusan';
         db.all(sql2, (err, rows) => {
             if (err) throw err;
-            JurusanView.tambahDB(rows)
+            JurusanView.tampilDB(rows)
             next()
         });
     }

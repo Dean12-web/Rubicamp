@@ -12,15 +12,22 @@ class MahasiswaController {
         });
     }
 
-    static cariMahasiswa(search_mhs, next) {
+    static cariMahasiswa(search_mhs,next) {
         const sql = `SELECT mahasiswa.NIM, mahasiswa.Nama, mahasiswa.Tanggal_Lahir, mahasiswa.Alamat, jurusan.Kode_Jurusan, jurusan.Nama_Jurusan FROM mahasiswa INNER JOIN jurusan ON mahasiswa.Kode_Jurusan = jurusan.Kode_Jurusan WHERE mahasiswa.NIM LIKE ?`;
         db.all(sql, [search_mhs], (err, rows) => {
             if (err) throw err;
-            MahasiswaView.cariMahasiswa(rows, next);
+            MahasiswaView.cariMahasiswa(rows,search_mhs);
             next();
         });
     }
-
+    static tampilMhs(next){
+        const sql1 = 'SELECT mahasiswa.NIM, mahasiswa.Nama, mahasiswa.Tanggal_Lahir, mahasiswa.Alamat, jurusan.Kode_Jurusan, jurusan.Nama_Jurusan FROM mahasiswa INNER JOIN jurusan ON mahasiswa.Kode_Jurusan = jurusan.Kode_Jurusan';
+        db.all(sql1, (err, rows) => {
+            if (err) throw err;
+            MahasiswaView.tampilMhs(rows)
+            next()
+        });
+    }
     static tambahMahasiswa(NIM, Nama, Tanggal_Lahir, Alamat, Kode_Jurusan, next) {
         const sql = 'INSERT INTO mahasiswa (NIM, Nama, Tanggal_Lahir, Alamat, Kode_Jurusan) VALUES (?,?,date(?),?,?)';
         db.run(sql, [NIM, Nama, Tanggal_Lahir, Alamat, Kode_Jurusan], function (err) {

@@ -23,6 +23,14 @@ class MataKuliahController {
             next();
         });
     }
+    static tampilDB(next){
+        const sql = 'SELECT * FROM mata_kuliah';
+        db.all(sql, (err, rows) => {
+            if (err) throw err;
+            MataKuliahView.tampilDB(rows)
+            next()
+        });
+    }
 
     static tambahMataKuliah(Kode_Matkul,Nama_Matkul,sks,next) {
         const sql = 'INSERT INTO mata_kuliah(Kode_Matkul, Nama_Matkul, sks) VALUES (?, ?, ?)';

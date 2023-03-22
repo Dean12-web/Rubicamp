@@ -20,7 +20,14 @@ class DosenView {
             console.log(`Nama Dosen : ${dosen.Nama_Dosen}`);
         });
     }
-    static tambahDosen(rows) {
+    static tampilDB(rows) {
+        const table = new Table({
+            head: ['NIP', 'Nama Dosen']
+        });
+        rows.forEach((sql) => {
+            table.push([sql.NIP, sql.Nama_Dosen])
+        });
+        console.log(table.toString());
     }
 }
 

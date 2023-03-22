@@ -23,6 +23,14 @@ class DosenController {
         });
     }
 
+    static tampilDB(next){
+        const sql2 = 'SELECT * FROM dosen';
+        db.all(sql2, (err, rows) => {
+            if (err) throw err;
+            DosenView.tampilDB(rows)
+            next()
+        });
+    }
     static tambahDosen(NIP_dosen, Nama_Dosen, next) {
         const sql = 'INSERT INTO dosen (NIP, Nama_Dosen) VALUES (?, ?)';
         db.run(sql, [NIP_dosen, Nama_Dosen], function (err) {

@@ -20,7 +20,14 @@ class MataKuliahView {
             console.log(`Nama Mata Kuliah : ${matkul.Nama_Matkul}`);
         });
     }
-    static tambahDosen(rows) {
+    static tampilDB(rows) {
+        const table = new Table({
+            head: ['Kode Mata Kuliah', 'Nama Mata Kuliah', 'sks']
+        });
+        rows.forEach((item) => {
+            table.push([item.Kode_Matkul, item.Nama_Matkul, item.sks])
+        });
+        console.log(table.toString());
     }
 }
 

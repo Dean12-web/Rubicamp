@@ -11,15 +11,23 @@ class KontrakController {
             next()
         });
     }
+
     static cariKontrak(search_kontrak, next) {
         const sql = `SELECT * FROM kontrak WHERE kontrak.NIM LIKE '%${search_kontrak}%'`;
         db.all(sql, (err, rows) => {
             if (err) throw err;
-            KontrakView.cariKontrak(rows, next)
+            KontrakView.cariKontrak(rows, search_kontrak)
             next();
         });
     }
-
+    static tampilKontrak(nim,next){
+        const sql = `SELECT id, mata_kuliah.Nama_Matkul, kontrak.Nilai FROM kontrak INNER JOIN mahasiswa on kontrak.NIM = mahasiswa.NIM INNER JOIN mata_kuliah on kontrak.Kode_Matkul = mata_kuliah.Kode_Matkul WHERE kontrak.NIM = ?`;
+        db.all(sql,[nim],(err,rows) =>{
+            if (err) console.log('error')
+            KontrakView.tampilKontrak(rows)
+            next();
+        })
+    }
     static tambahKontrak(kontrak_nim, kontrak_mk, kontrak_nip, next) {
         const sql = 'INSERT INTO kontrak(NIM, Kode_Matkul, NIP) VALUES (?, ?, ?)';
         db.run(sql, [kontrak_nim, kontrak_mk, kontrak_nip], function (err) {
@@ -43,12 +51,13 @@ class KontrakController {
         });
     }
 
-    static updateNilai(id, nilai, next) {
-        const sql = `UPDATE kontrak SET Nilai = ? WHERE id = ?`;
-        db.run(sql, [nilai, id], function (err) {
+    static updateNilai(nim,id,nilai, next) {
+        const sql = 'UPDATE kontrak SET Nilai = ? WHERE id = ? AND NIM = ?';
+        db.run(sql, [nilai, id, nim], function (err) {
             if (err) {
                 console.error(err.message);
             } else {
+                KontrakView.line();
                 console.log('Nilai telah di update');
             }
             next();

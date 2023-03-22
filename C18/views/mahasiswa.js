@@ -23,7 +23,14 @@ class MahasiswaView {
             console.log(`Mahasiswa dengan NIM ${search_mhs}, tidak terdaftar`);
         }
     }
-    static tambahMahasiswa(rows) {
+    static tampilMhs(rows) {
+        const table = new Table({
+            head: ['NIM', 'Nama', 'Tanggal Lahir', 'Alamat', 'Kode Jurusan', 'Nama Jurusan']
+        });
+        rows.forEach((item) => {
+            table.push([item.NIM, item.Nama, item.Tanggal_Lahir, item.Alamat, item.Kode_Jurusan, item.Nama_Jurusan])
+        });
+        console.log(table.toString());
     }
 }
 
