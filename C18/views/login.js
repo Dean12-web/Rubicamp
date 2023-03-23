@@ -11,6 +11,7 @@ class OptionView {
     }
 
     static logout(){
+        OptionView.line();
         console.log('Anda telah keluar');
     }
 

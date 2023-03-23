@@ -30,7 +30,7 @@ class OptionController {
                         db.all(sqlPasswords, [getpassword], (err, password) => {
                             if (err) throw err;
                             if (password.length > 0) {
-                                console.log(`Welcome, ${getusername} your acces level is: ADMIN `);
+                                console.log(`Welcome, ${getusername}. your acces level is: ADMIN `);
                                 OptionModel.mainOption()
                             } else {
                                 console.log('Incorecct Password, Try again');
