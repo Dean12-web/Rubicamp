@@ -3,11 +3,17 @@ const readline = require('node:readline');
 const process = require('node:process');
 
 const args = process.argv[2];
+// console.log("number of arguments is "+args.length);
+// args.forEach((val, index) => {
+//     console.log(`${index}: ${val}`);
+// });
+// for (let i = 0; i < args.length; i++) {
+//     console.log(`${i}: ${args[i]}`)
+// }
 if (args === undefined) {
     console.log('Tolong sertakan nama file sebagai inputan soalnya')
     console.log("misalnya 'node tebakan.js data.json'");
 }else{
-    // console.log("number of arguments is "+process.argv[2]);
 console.log(`Selamat datang di permainan Tebak-tebakan, kamu akan diberikan pertanyaan dari file ini ${process.argv[2]}!`);
 console.log('Untuk bermain, jawablah dengan jawaban yang sesuai.');
 console.log(`gunakan 'skip untuk menangguhkan pertanyaannya, dan di akhir pertanyaan akan ditanyakan lagi \n`);
@@ -16,19 +22,20 @@ const rl = readline.createInterface({
     output: process.stdout,
     prompt: 'Tebakan:  ',
 });
-let rawdata = filesystem.readFileSync('data.json');
+let rawdata = filesystem.readFileSync(process.argv[2]);
 let data = JSON.parse(rawdata);
 let index = 0;
 let wrong = 0;
 console.log(`Pertanyaan: ${data[index].definition}`);
 rl.prompt();
 rl.on('line', (line) => {
-    if (line === 'skip') {
+    if (line.toLowerCase() === 'skip') {
         data.push(data[index])
-        index++;
+        data.splice(index,1)
+        // index++;
         console.log(`\nPertanyaan: ${data[index].definition}`);
     } else {
-        if (line == data[index].term) {
+        if (line.toLowerCase() == data[index].term.toLowerCase()) {
             console.log('\nAnda Beruntung!\n');
             wrong = 0;
             index++;
