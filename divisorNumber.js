@@ -14,3 +14,4 @@ function getDivisorsCnt(n) {
 console.log(getDivisorsCnt(5000))
 console.log(getDivisorsCnt(5))
 console.log(getDivisorsCnt(4))
+console.log(getDivisorsCnt(12))
