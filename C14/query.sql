@@ -5,9 +5,10 @@ CREATE TABLE mahasiswa(
     id_jurusan CHARACTER(3) NOT NULL,
     FOREIGN KEY(id_jurusan) REFERENCES jurusan(id_jurusan));
 
+--INT untuk atribut bisa untuk tipe data, integer harus di primary key 
+
 INSERT INTO mahasiswa VALUES 
 ('279', 'mahyudin akbar', 'Jalan lurus', '111' );
-
 CREATE TABLE jurusan(
     id_jurusan CHARACTER(3) PRIMARY KEY NOT NULL,
     nama_jurusan VARCHAR(100) NOT NULL
@@ -32,8 +33,6 @@ INSERT INTO matakuliah(id_matakuliah, nama_mk, sks) VALUES
 CREATE TABLE dosen(
     nip CHARACTER(4) PRIMARY KEY NOT NULL,
     nama_dosen VARCHAR(100) NOT NULL,
-    id_matakuliah CHARACTER(3),
-    FOREIGN KEY(id_matakuliah) REFERENCES matakuliah(id_matakuliah)
 );
 
 INSERT INTO dosen VALUES 
@@ -48,6 +47,8 @@ CREATE TABLE teachs(
     FOREIGN KEY(nip) REFERENCES dosen(nip),
     FOREIGN KEY(id_matakuliah) REFERENCES matakuliah(id_matakuliah)
 );
+
+ALTER TABLE teachs RENAME TO kontrak
 
 INSERT INTO mahasiswa VALUES 
 (1, '279', 'D001', '001' );

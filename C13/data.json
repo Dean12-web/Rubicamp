@@ -1,27 +1,20 @@
 [
     {
         "task_id": 1,
-        "task_content": "saya akan memasak",
+        "task_content": "saya memasak",
         "status": false,
-        "tag": [
-            "nasi"
-        ]
+        "tag": []
     },
     {
         "task_id": 2,
-        "task_content": "saya akan mencuci",
-        "status": true,
-        "tag": [
-            "uang"
-        ]
+        "task_content": "saya memencuci",
+        "status": false,
+        "tag": []
     },
     {
         "task_id": 3,
-        "task_content": "saya belajar",
-        "status": true,
-        "tag": [
-            "javascript",
-            "matematika"
-        ]
+        "task_content": "saya memembaca",
+        "status": false,
+        "tag": []
     }
 ]

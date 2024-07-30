@@ -14,7 +14,7 @@ filesystem.readFile('data.json', (err, rawdata) => {
     console.log(data[index].definition);
     rl.prompt();
     rl.on('line', (line) => {
-        if(line == data[index].term){
+        if(line.toLowerCase() == data[index].term.toLowerCase()){
             console.log('Selamat, Anda Benar!\n'); 
             index++;
         }else{

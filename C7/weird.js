@@ -1,11 +1,11 @@
 const weirdMultiply = (sentence) => {
     const value = sentence.toString();
     const arr = Array.from(value);
-    let multiple = 1;
+    let multiple = arr[0];
     if(value.length == 1){
         return value;
     }else{
-        for (let i = 0; i < arr.length; i++) {
+        for (let i = 1; i < arr.length; i++) {
             multiple *= arr[i];
         }
         return weirdMultiply(multiple);
@@ -17,3 +17,4 @@ console.log(weirdMultiply(3));
 
 
 
+// mulitiple * tidak perlu di parsing

@@ -40,6 +40,12 @@ SELECT nim, nama_mhs, alamat, jurusan.nama_jurusan FROM mahasiswa
 INNER JOIN jurusan on mahasiswa.id_jurusan = jurusan.id_jurusan;
 
 -- 2. Tampilkan mahasiswa yang memiliki umur dibawah 20 tahun;
+
+ALTER TABLE mahasiswa ADD COLUMN tanggallahir DATE
+-- sqlite Calculate age untuk cari umur
+-- using digunakan ketika nama yg dijoin sama, klo beda pake on
+-- where clause bisa digunakan selama data yg di input tidak boleh kosong / NOT NULL
+
 SELECT * FROM mahasiswa WHERE umur < 20;
 
 -- 3. Tampilkan mahasiswa yang memiliki nilai 'B' ke atas;
@@ -48,10 +54,10 @@ FROM mahasiswa INNER JOIN kontrak ON mahasiswa.nim = kontrak.nim
 WHERE kontrak.nilai = 'A' OR kontrak.nilai = 'B';
 
 -- 4. Tampilkan mahasiswa yang memiliki jumlah SKS lebih dari 10;
-SELECT kontrak.nim, mahasiswa.nama_mhs, matakuliah.nama_mk 
+SELECT mahasiswa.nama_mhs, matakuliah.nama_mk, SUM(matakuliah.sks) as jumlah_sks
 FROM kontrak INNER JOIN mahasiswa ON kontrak.nim = mahasiswa.nim 
-INNER JOIN matakuliah ON kontrak.id_matakuliah = matakuliah.id_matakuliah 
-GROUP BY kontrak.nim HAVING matakuliah.sks > 10;
+INNER JOIN matakuliah ON kontrak.id_matakuliah = matakuliah.id_matakuliah
+GROUP BY kontrak.nim HAVING matakuliah.sks >10;
 
 -- 5. Tampilkan mahasiswa yang mengontrak mata kuliah 'data mining';
 SELECT kontrak.nim, mahasiswa.nama_mhs, matakuliah.nama_mk 

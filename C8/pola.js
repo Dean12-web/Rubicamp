@@ -1,6 +1,6 @@
 function pola(str) {
     let length = 10
-    let arr1 = str.split(' ');
+    let arr1 = str.split('*');
     let arr2 = str.split(' ');
     let arr3 = str.split(' ');
     let val =[];

@@ -64,7 +64,6 @@ if(args1 === undefined){
         console.log(`"${sentence.trim()}" telah di tambahkan`)
     }else if(args1 === 'delete'){
         let indexDelete = parseInt(args2) - 1;
-        console.log(indexDelete)
         let dataItem = data[indexDelete];
         data.splice(indexDelete, 1);
         fs.writeFileSync('data.json', JSON.stringify(data,null,4))
@@ -82,7 +81,7 @@ if(args1 === undefined){
         fs.writeFileSync('data.json', JSON.stringify(data,null,4))
         console.log(`"${dataItem.task_content}" status selesai dibatalkan`)
     }else if(args1 === 'list:outstanding'){
-        if(args2 == 'asc'){
+        if(args2 == 'ascending'){
             console.log("Daftar Pekerjaan")
             for (let i = 0; i < data.length; i++) {
                 if(data[i].status === false){
@@ -109,6 +108,7 @@ if(args1 === undefined){
             console.log("Daftar Pekerjaan")
             for (let j = data.length -1 ; j >= 0; j--) {
                 if(data[j].status === true){
+                    // if(!data[id].tags.includes(tag)) untuk agar data tidak duplikat
                     console.log(`${j+0}.[X] ${data[j].task_content}`)    
                 }
             }
@@ -120,13 +120,13 @@ if(args1 === undefined){
         let tag = data[indexTags]
         for (let i = 4; i < args.length; i++) {
                 tags.push(args[i]);
-                console.log(args[i])
                 words += args[i] + ' ';
         }   
         fs.writeFileSync('data.json', JSON.stringify(data, null, 4));
         console.log(`Tags '${words.trim()}' telah ditambahkan ke daftar ${tag.task_content}`)
     }else{
         const filter = args1.split(':');
+        console.log(filter);
         if (filter[0] === 'filter') {
             console.log("Daftar Pekerjaan")
             for (let i = 0; i < data.length; i++) {
