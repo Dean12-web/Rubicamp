@@ -1,12 +1,18 @@
-let a = 5
-let b = 4
-let c = 3
+function test() {
+    var a = "3";
+    var b = "8";
+    
+/***********Do not change the code above 👆*******/
+//Write your code on lines 7 - 9:
+    var temp = b;
+    b = a
+    a = temp
 
-let temp = b
-let temp2 = a
-b = c
-c = temp
-a = c
-c = temp2
+    
+/***********Do not change the code below 👇*******/
 
-console.log(`nilai a = ${a} nilai b = ${b} nilai c = ${c} `)
+    console.log("a is " + a);
+    console.log("b is " + b);
+}
+
+test()
