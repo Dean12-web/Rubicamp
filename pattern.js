@@ -61,3 +61,50 @@ for (let i = 5; i >= 1; i--) {
     }
     console.log(line)
 }
+
+//piramid pattern
+for (let i = 1; i <= 5; i++) {
+    let pattern= ''
+    for (let j = 1; j <= 2 * 5; j++) {
+        if (i + j >= 5 + 1 && i >= j - 5 + 1) { 
+            pattern+= '* ';
+        }else{
+            pattern+= '  '
+        }
+    }
+    console.log(pattern)
+}
+
+
+function printHourglass(n) {
+    // Upper half of the hourglass
+    for (let i = 0; i < n; i++) {
+        let row = '';
+        // Leading spaces
+        for (let j = 0; j < i; j++) {
+            row += ' ';
+        }
+        // Asterisks
+        for (let k = 0; k < (2 * (n - i) - 1); k++) {
+            row += '*';
+        }
+        console.log(row);
+    }
+
+    // Lower half of the hourglass
+    for (let i = 1; i < n; i++) {
+        let row = '';
+        // Leading spaces
+        for (let j = 1; j < (n - i); j++) {
+            row += ' ';
+        }
+        // Asterisks
+        for (let k = 0; k < (2 * i + 1); k++) {
+            row += '*';
+        }
+        console.log(row);
+    }
+}
+
+// Test the function
+printHourglass(5);
