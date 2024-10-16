@@ -6,6 +6,7 @@ for (let i = 0; i < 5; i++) {
     }
     console.log(pola);
 }
+console.log("==========================")
 
 //Pattern 2
 for (let i = 5; i > 0; i--) {
@@ -15,6 +16,7 @@ for (let i = 5; i > 0; i--) {
     }
     console.log(pola)
 }
+console.log("==========================")
 
 //Pattern 3
 for (let i = 1; i <= 5; i++) {
@@ -24,7 +26,7 @@ for (let i = 1; i <= 5; i++) {
     }
     console.log(pola)
 }
-
+console.log("==========================")
 // //Pattern 4
 for (let i = 5; i >= 1; i--) {
     let pola = ''
@@ -33,7 +35,7 @@ for (let i = 5; i >= 1; i--) {
     }
     console.log(pola)
 }
-
+console.log("==========================")
 //Pattern 5 
 for (let i = 1; i <= 5; i++) {
     let pola = ''
@@ -42,7 +44,7 @@ for (let i = 1; i <= 5; i++) {
     }
     console.log(pola)
 }
-
+console.log("==========================")
 // Pattern 6
 for (let i = 1; i <= 5; i++) {
     let line = '';
@@ -52,7 +54,7 @@ for (let i = 1; i <= 5; i++) {
     console.log(line)
     
 }
-
+console.log("==========================")
 // Pattern 7
 for (let i = 5; i >= 1; i--) {
     let line = '';
@@ -61,7 +63,7 @@ for (let i = 5; i >= 1; i--) {
     }
     console.log(line)
 }
-
+console.log("==========================")
 //piramid pattern
 for (let i = 1; i <= 5; i++) {
     let pattern= ''
@@ -74,8 +76,7 @@ for (let i = 1; i <= 5; i++) {
     }
     console.log(pattern)
 }
-
-
+console.log("==========================")
 function printHourglass(n) {
     // Upper half of the hourglass
     for (let i = 0; i < n; i++) {
