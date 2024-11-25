@@ -1,0 +1,53 @@
+{
+  "zodiac_hobbies": {
+    "Aries": {
+      "hobby": "Adventure sports (rock climbing, hiking)",
+      "scents": ["Cinnamon", "Black Pepper", "Grapefruit", "Bergamot"]
+    },
+    "Taurus": {
+      "hobby": "Gardening and cooking",
+      "scents": ["Patchouli", "Vetiver", "Vanilla", "Tonka Bean"]
+    },
+    "Gemini": {
+      "hobby": "Writing, socializing, learning new languages",
+      "scents": ["Lemon", "Lime", "Cherry Blossom", "Lychee"]
+    },
+    "Cancer": {
+      "hobby": "Home decor, baking, and caring for others",
+      "scents": ["Sea Breeze", "Marine", "Coconut", "Almond"]
+    },
+    "Leo": {
+      "hobby": "Performing arts, fashion styling",
+      "scents": ["Tuberose", "Orange Blossom", "Honey", "Caramel"]
+    },
+    "Virgo": {
+      "hobby": "Organizing, yoga, and DIY crafts",
+      "scents": ["Lavender", "Freesia", "Basil", "Thyme"]
+    },
+    "Libra": {
+      "hobby": "Art appreciation, hosting events, and fashion",
+      "scents": ["Rose", "Peony", "Sandalwood", "Cedarwood"]
+    },
+    "Scorpio": {
+      "hobby": "Investigative activities, mystery reading, or martial arts",
+      "scents": ["Incense", "Tobacco", "Oud", "Ebony"]
+    },
+    "Sagittarius": {
+      "hobby": "Traveling, photography, and outdoor sports",
+      "scents": ["Grapefruit", "Bergamot", "Cedarwood", "Pine"]
+    },
+    "Capricorn": {
+      "hobby": "Business strategy games, hiking, and collecting vintage items",
+      "scents": ["Patchouli", "Vetiver", "Ambergris", "Myrrh"]
+    },
+    "Aquarius": {
+      "hobby": "Tech gadgets, futuristic designs, or volunteering",
+      "scents": ["Iris", "Orchid", "Lemon", "Lime"]
+    },
+    "Pisces": {
+      "hobby": "Painting, music, or meditation",
+      "scents": ["Water Lily", "Lotus", "Vanilla", "Honey"]
+    }
+  }
+
+}
